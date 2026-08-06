@@ -1,27 +1,41 @@
-const BASE_URL = 'http://localhost:8000'
+const BASE_URL = 'http://localhost:8001'
+
+async function request(path, options = {}) {
+  const res = await fetch(`${BASE_URL}${path}`, {
+    credentials: 'include',
+    ...options,
+  })
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}))
+    throw new Error(errorData.detail || 'Request failed')
+  }
+  return res.json()
+}
 
 export async function sendChatMessage(userId, message) {
-  const res = await fetch(`${BASE_URL}/chat`, {
+  return request('/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ user_id: userId, message }),
   })
-  if (!res.ok) throw new Error((await res.json()).detail || 'Chat request failed')
-  return res.json()
 }
 
 export async function getSlots() {
-  const res = await fetch(`${BASE_URL}/slots`)
-  if (!res.ok) throw new Error('Failed to fetch slots')
-  return res.json()
+  return request('/slots')
 }
 
 export async function createReservation(slotId, userId, durationMinutes) {
-  const res = await fetch(`${BASE_URL}/reservations`, {
+  return request('/reservations', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ slot_id: slotId, user_id: userId, duration_minutes: durationMinutes }),
   })
-  if (!res.ok) throw new Error((await res.json()).detail || 'Reservation failed')
-  return res.json()
+}
+
+export async function getCurrentUser() {
+  return request('/auth/me')
+}
+
+export async function logoutUser() {
+  return request('/auth/logout', { method: 'POST' })
 }
