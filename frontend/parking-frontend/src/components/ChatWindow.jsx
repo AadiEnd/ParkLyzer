@@ -127,7 +127,7 @@ export default function ChatWindow({ userId, onSlotsChanged, slotsSummary = { to
           />
           <button
             className="rounded-full bg-emerald-500/90 p-2 text-white transition hover:scale-105 disabled:opacity-50"
-            onClick={handleSend}
+            onClick={() => handleSend()}
             disabled={sending}
             type="button"
           >
