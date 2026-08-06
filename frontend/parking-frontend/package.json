@@ -4,14 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node dev-server.mjs",
+    "dev:frontend": "vite",
+    "dev:backend": "python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000",
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.11.10",
+    "lucide-react": "^0.469.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "tailwind-merge": "^2.4.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
