@@ -1,0 +1,65 @@
+{
+  "slots": {
+    "status": 200,
+    "count": 18,
+    "sample": [
+      {
+        "slot_id": "E-1",
+        "zone": "Entrance",
+        "status": "reserved",
+        "reserved_until": "2026-08-05T20:43:20"
+      },
+      {
+        "slot_id": "E-2",
+        "zone": "Entrance",
+        "status": "reserved",
+        "reserved_until": "2026-08-12T16:44:01"
+      },
+      {
+        "slot_id": "E-3",
+        "zone": "Entrance",
+        "status": "free",
+        "reserved_until": null
+      }
+    ]
+  },
+  "reservations": {
+    "status": 200,
+    "body": {
+      "reservation_id": "f6fb57f8-b75d-4d3b-8f61-184903434b3e",
+      "slot_id": "E-3",
+      "end_time": "2026-08-12T16:37:29.975699"
+    },
+    "slot_id": "E-3"
+  },
+  "concurrency": {
+    "slot_id": "E-4",
+    "result1": {
+      "status": 200,
+      "body": {
+        "reservation_id": "9fcd0001-d93b-4d76-b9d2-0577b4bab4a3",
+        "slot_id": "E-4",
+        "end_time": "2026-08-12T16:32:34.047122"
+      }
+    },
+    "result2": {
+      "status": 400,
+      "body": "{\"detail\":\"Slot 'E-4' is not available (status: reserved).\"}"
+    },
+    "final_slot_state": {
+      "slot_id": "E-4",
+      "zone": "Entrance",
+      "status": "reserved",
+      "reserved_until": "2026-08-12T16:32:34"
+    },
+    "active_reservations_for_slot": [
+      {
+        "reservation_id": "9fcd0001-d93b-4d76-b9d2-0577b4bab4a3",
+        "user_id": "eval_d_user1",
+        "start_time": "2026-08-12 16:22:34",
+        "end_time": "2026-08-12 16:32:34"
+      }
+    ],
+    "double_booked": false
+  }
+}
